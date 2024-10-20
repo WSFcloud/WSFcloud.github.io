@@ -6,7 +6,7 @@ image: ''
 tags: [教程, Visual Studio Code]
 category: '教程'
 draft: false 
-lang: ''
+lang: 'zh_CN'
 ---
 
 ## 前言
@@ -37,7 +37,7 @@ lang: ''
 
 [^1]: [[科普][FAQ]MinGW vs MinGW-W64及其它](https://github.com/FrankHB/pl-docs/blob/master/zh-CN/mingw-vs-mingw-v64.md)
 
-MinGW-W64有多个发行版本如mingw-builds、MSYS2、LLVM-MinGW等，这里我们选择mingw-builds。在[GitHub](https://github.com/niXman/mingw-builds-binaries/releases)上选择一个版本下载，本文选择**x86_64-14.2.0-release-posix-seh-ucrt-rt_v12-rev0.7z**作为安装版本。
+MinGW-W64有多个发行版本如mingw-builds、MSYS2、LLVM-MinGW等，这里我们选择mingw-builds。在[GitHub](https://github.com/niXman/mingw-builds-binaries/releases)上选择一个版本下载，本文选择**x86_64-14.2.0-release-posix-seh-ucrt-rt_v12-rev0.7z**作为安装版本，如果你的网络环境无法正常从GitHub上下载 ，也可以到[山东大学镜像站](https://mirrors.sdu.edu.cn/github-release/niXman_mingw-builds-binaries/)下载。
 
 下载完后得到一个拓展名为.7z的压缩包，解压后得到的就是MinGW-W64本体，把它放在一个你能找到的位置比如C盘根目录下面（不管放到哪里，路径不要含有中文防止出现奇怪的错误）。
 
