@@ -473,6 +473,22 @@ TabWidth: 4
 UseTab: Always
 ```
 
+有时clangd的检查过于严格，会在我们认为不需要进行修改的地方标黄色波浪线（Warning），虽然我们应当小心谨慎地编写规范的代码，但有时确实无法完全按照标准去写~~懒得改~~，此时我们可以对clangd的配置文件进行修改以去掉刺眼的波浪线。按F1呼出VS Code的命令窗口，输入“clangd”，选择“Open user configuration file”打开config.yaml配置文件，我们给出一个例子以供参考：
+```yaml
+CompileFlags: # 编译标志
+  Add: [
+    "-Wall", # 启用所有警告
+    "-Wno-unused-but-set-variable", # 禁用警告存在未使用的变量
+  ]
+  Remove: [
+    "-Werror", # 移除将所有警告作为错误的选项
+  ]
+Diagnostics: # 诊断设置
+  UnusedIncludes: None # 禁用警告存在未使用的头文件
+  Suppress: 
+    pp_including_mainfile_in_preamble # 禁用警告存在头文件递归包含
+```
+
 现在我们已经可以愉快地使用clangd了，如果你想了解如何更好地配置clangd，可以查阅[clangd官网](https://clangd.llvm.org/)。
 
 ## 还可以做到更多
