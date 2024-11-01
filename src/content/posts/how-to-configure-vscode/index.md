@@ -86,7 +86,7 @@ gcc -v
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "C:/mingw64/bin"
+                "cwd": "C:/mingw64/bin" // 这里写存放mingw的路径
             },
             "problemMatcher": [
                 "$gcc"
@@ -118,7 +118,7 @@ gcc -v
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "C:/mingw64/bin"
+                "cwd": "C:/mingw64/bin" // 这里写存放mingw的路径
             },
             "problemMatcher": [
                 "$gcc"
@@ -209,15 +209,15 @@ gcc -v
  *  终端进程启动失败(退出代码: -1)。 
  *  终端将被任务重用，按任意键关闭。
 ```
-并弹出报错窗口，说明你尝试编译运行的不是C/C++文件。
+并弹出报错窗口，说明你尝试编译运行的不是C/C++文件，请确保当前选中的标签页是C/C++文件。
 :::
 
-C/C++插件的可供选择的功能十分丰富，具体可以点击左下角齿轮——设置——搜索“C_Cpp”筛选出所有设置选项，你也可以对VS Code的设置选项进行自定义。
+C/C++插件的可供选择的功能十分丰富，具体可以点击左下角齿轮——设置——搜索“C_Cpp”筛选出设置选项，你也可以对VS Code的其他设置选项进行自定义。
 
 ![](./figure/C5.png)
 
 ## 使用clangd作为语言服务器
-LSP即Language Server Protocol，是由微软定义的编辑器或IDE与语言服务器之间使用的协议，语言服务器提供自动补全、转到定义、查找所有引用等语言功能，同时具有较小的性能开销。如果你觉得C/C++插件不够好用，我们推荐使用clangd作为C/C++的语言服务器以提供上述的功能，事实上CLion使用的语言服务器之一就是clangd。
+LSP即Language Server Protocol，是由微软推出的编辑器或IDE与语言服务器之间使用的协议，语言服务器提供自动补全、转到定义、查找所有引用等语言功能，同时具有较小的性能开销。如果你觉得C/C++插件不够好用，我们推荐使用clangd作为C/C++的语言服务器以提供上述的功能，事实上CLion使用的语言服务器之一就是clangd。
 
 拓展商店里搜索“clangd”并下载，下载完后会弹出窗口询问是否要禁用C/C++插件的IntelliSense，因为我们的目的就是使用clangd提供IntelliSense等功能，点击Disable IntelliSense。
 
