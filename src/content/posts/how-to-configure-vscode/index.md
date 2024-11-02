@@ -489,6 +489,8 @@ Diagnostics: # 诊断设置
     pp_including_mainfile_in_preamble # 禁用警告存在头文件递归包含
 ```
 
+配置文件根据具体需要进行修改。
+
 现在我们已经可以愉快地使用clangd了，如果你想了解如何更好地配置clangd，可以查阅[clangd官网](https://clangd.llvm.org/)。
 
 ## 还可以做到更多
