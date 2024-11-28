@@ -1,7 +1,7 @@
 ---
-title: let-docker-in-wsl-use-gpu
+title: 让WSL中的Docker使用GPU
 published: 2024-11-28
-description: '让WSL中的Docker使用GPU'
+description: '仅使用WSL，不额外安装Docker Desktop即可使用宿主机GPU'
 image: ''
 tags: [Docker, WSL, Deep Learning]
 category: '笔记'
@@ -10,7 +10,7 @@ lang: 'zh_CN'
 ---
 
 ## 前言
-参考[WSL官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute)[^1]与[NVIDIA官方文档](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)进行配置。
+参考[WSL官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute)与[NVIDIA官方文档](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)进行配置[^1]。
 
 使用环境：
 - Windows：Windows10 22H2
@@ -68,7 +68,7 @@ sudo systemctl restart docker
 
 
 ## 检测Docker是否可以使用GPU
-使用debian:latest作为容器镜像，加入参数“--runtime=nvidia --gpus all”启动容器
+使用debian: latest作为容器镜像，加入参数“--runtime=nvidia --gpus all”启动容器
 ```bash
 sudo docker run --rm --runtime=nvidia --gpus all debian:latest nvidia-smi
 ```
