@@ -20,7 +20,7 @@ lang: 'zh_CN'
 [^1]: 截止至2024-11-28，WSL文档里的部分内容与实际运行结果不一致。
 
 ## WSL中安装Docker Engine
-1. 在宿主机中安装NVIDIA GPI驱动。
+1. 在宿主机中安装NVIDIA GPU驱动。
    
 2. 在WSL中安装Docker Engine
 
