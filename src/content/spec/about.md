@@ -1,9 +1,11 @@
 # About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+风烟流云的个人博客网站，写些想写的东西，记录随笔。
 
-::github{repo="saicaca/fuwari"}
+:::note
+本站可能包含技术教程、学习笔记、日常吐槽、无意义草稿、键盘政治等内容。
+:::
+
+如果您有想与我联系交流的话题，请私信或发送到我的邮箱。
 
 > ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+> - [アスカ](https://www.pixiv.net/artworks/78025062) by [GREY](https://www.pixiv.net/users/13553019)
