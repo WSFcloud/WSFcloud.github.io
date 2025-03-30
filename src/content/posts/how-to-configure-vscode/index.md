@@ -37,7 +37,11 @@ lang: 'zh_CN'
 
 [^1]: [[科普][FAQ]MinGW vs MinGW-W64及其它](https://github.com/FrankHB/pl-docs/blob/master/zh-CN/mingw-vs-mingw-v64.md)
 
-MinGW-W64有多个发行版本如mingw-builds、MSYS2、LLVM-MinGW等，这里我们选择mingw-builds。在[GitHub](https://github.com/niXman/mingw-builds-binaries/releases)上选择一个版本下载，本文选择**x86_64-14.2.0-release-posix-seh-ucrt-rt_v12-rev0.7z**作为安装版本（你也可以选择其他版本下载，推荐选择使用POSIX线程模型+SEH异常处理方法+UCRT运行库的版本），如果你的网络环境无法正常从GitHub上下载 ，也可以到[山东大学镜像站](https://mirrors.sdu.edu.cn/github-release/niXman_mingw-builds-binaries/)下载。如果你想体验一下Clang，可以下载由[WinLibs](https://winlibs.com/)提供的整合包，它包含了GCC与LLVM的一系列设施。
+MinGW-W64有多个发行版本如mingw-builds、MSYS2、LLVM-MinGW等，这里我们推荐下载由[WinLibs](https://winlibs.com/)提供的整合包，它包含了GCC与LLVM的一系列设施以及一些附加工具。
+
+![](./figure/winlibsdl.png)
+
+如果你因为网络原因难以从WinLibs上下载，你也可以到[山东大学镜像站](https://mirrors.sdu.edu.cn/github-release/niXman_mingw-builds-binaries/)下载由[mingw-builds](https://github.com/niXman/mingw-builds-binaries/releases)发布的版本（POSIX线程模型+SEH异常处理方法+UCRT运行库）。
 
 下载完后得到一个拓展名为.7z的压缩包，解压后得到的就是MinGW-W64本体，把它放在一个你能找到的位置比如C盘根目录下面（不管放到哪里，路径不要含有中文防止出现奇怪的错误）。
 
@@ -55,7 +59,7 @@ MinGW-W64有多个发行版本如mingw-builds、MSYS2、LLVM-MinGW等，这里�
 ```bash
 gcc -v
 ```
-回车后你将会看见关于MinGW-W64的版本信息，如果提示“'gcc'不是内部或外部命令，也不是可运行的程序或批处理文件。”可尝试重启电脑，若仍出现该消息，说明没有成功添加到Path，请检查是否出现了拼写错误或路径错误。
+回车后你将会看见关于GCC的版本信息，如果提示“'gcc'不是内部或外部命令，也不是可运行的程序或批处理文件。”可尝试重启电脑，若仍出现该消息，说明没有成功添加到Path，请检查是否出现了拼写错误或路径错误。
 
 ## 配置Visual Studio Code
 首先，我们下载C/C++插件提供C/C++语言的代码补全、高亮、格式化、调试等功能。在拓展应用商店界面搜索C/C++并下载。
@@ -79,7 +83,7 @@ gcc -v
                 "-fdiagnostics-color=always", // 强制编译器在输出错误和警告信息时使用颜色，便于阅读
                 "-g", // 生成调试信息
                 "-Wall", // 启用所有警告
-                "-std=c++20", // 使用C++20作为语言标准
+                "-std=c++23", // 使用C++23作为语言标准
                 "-D__LOCAL__", // （可选）定义宏__LOCAL__
                 "-O2", //（可选）开启O2优化
                 "${file}",
@@ -232,7 +236,9 @@ LSP即Language Server Protocol，是由微软推出的编辑器或IDE与语言�
 ![](./figure/D1.png)
 ![](./figure/D2.png)
 
-clangd插件仅提供了一个前端，现在需要我们安装clangd后端。按F1呼出VS Code的命令窗口，输入“clangd”，选择“clangd: Download language server”，clangd插件会开始下载clangd后端。
+clangd插件仅提供了一个前端，现在需要我们安装clangd后端。如果你使用的是WinLibs提供的附带LLVM的MinGW-W64，那么只需要在VS Code的设置里面搜索“Clangd: Path”，然后填入C:\mingw64\bin\clangd.exe（也就是你存放MinGW-W64的路径）即可。
+
+你也可以按F1呼出VS Code的命令窗口，输入“clangd”，选择“clangd: Download language server”，clangd插件会开始下载clangd后端。
 
 ![](./figure/D3.png)
 
@@ -399,7 +405,7 @@ DerivePointerAlignment: false
 FixNamespaceComments: true
 
 # 缩进case标签
-IndentCaseLabels: false
+IndentCaseLabels: true
 
 IndentPPDirectives: None
 
@@ -479,14 +485,17 @@ TabWidth: 4
 
 # 使用tab字符: Never, ForIndentation, ForContinuationAndIndentation, Always
 UseTab: Never
+
 ```
 
-有时clangd的检查过于严格，会在我们认为不需要进行修改的地方标黄色波浪线（Warning），虽然我们应当小心谨慎地编写规范的代码，但有时确实无法完全按照标准去写~~懒得改~~，此时我们可以对clangd的配置文件进行修改以去掉刺眼的波浪线。按F1呼出VS Code的命令窗口，输入“clangd”，选择“Open user configuration file”打开config.yaml配置文件，我们给出一个例子以供参考：
+有时clangd的检查过于严格，会在我们认为不需要进行修改的地方标黄色波浪线（Warning），虽然我们应当小心谨慎地编写规范的代码，但有时确实无法完全按照标准去写~~懒得改~~，此时我们可以对clangd的配置文件进行修改以去掉刺眼的波浪线。按F1呼出VS Code的命令窗口，输入“clangd”，选择“Open user configuration file”打开config.yaml配置文件加入配置信息（或者在代码文件夹根目录下新建一个.clangd文件），我们给出一个例子以供参考：
 ```yaml
 CompileFlags: # 编译标志
   Add: [
+	"-std=c++23", # C++标准
     "-Wall", # 启用所有警告
     "-Wno-unused-but-set-variable", # 禁用警告存在未使用的变量
+    "-D__LOCAL__", # 定义宏__LOCAL__
   ]
   Remove: [
     "-Werror", # 移除将所有警告作为错误的选项
@@ -495,6 +504,9 @@ Diagnostics: # 诊断设置
   UnusedIncludes: None # 禁用警告存在未使用的头文件
   Suppress: 
     pp_including_mainfile_in_preamble # 禁用警告存在头文件递归包含
+  ClangTidy:
+    Remove: 
+      misc-definitions-in-headers
 ```
 
 配置文件根据具体需要进行修改。
