@@ -71,7 +71,7 @@ gcc -v
 ![](./figure/C2.png)
 ![](./figure/C3.png)
 
-接下来我们来对编译调与试功能进行配置。在tasks.json中粘贴如下内容：
+接下来我们来对编译与调试功能进行配置。在tasks.json中粘贴如下内容：
 ```json
 {
     "tasks": [
