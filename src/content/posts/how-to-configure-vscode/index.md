@@ -513,6 +513,24 @@ Diagnostics: # 诊断设置
 
 现在我们已经可以愉快地使用clangd了，如果你想了解如何更好地配置clangd，可以查阅[clangd官网](https://clangd.llvm.org/)。
 
+## 使用预编译头文件
+使用万能头文件<bits/stdc++.h>会降低编译速度，我们可以使用预编译头文件来提高编译速度。
+
+打开<bits/stdc++.h>所在的文件夹（如：C:\mingw64\include\c++\14.2.0\x86_64-w64-mingw32\bits）右键-在终端中打开，或着使用cd命令移动到该路径，输入编译命令（必须和编译C++代码的编译参数保持一致）：
+```bash
+g++ -g -std=c++23 -Wall stdc++.h -o stdc++.h.gch
+```
+
+为了测试是否使用了预编译头文件，在编译参数里面加上-H参数，例如：
+```bash
+g++ -H -g -std=c++23 -Wall test.cpp -o test.exe
+```
+
+如果看见了下面的输出则说明成果使用了预编译头文件，否则没有，重新检查编译参数是否一致。
+```bash
+! C:/mingw64/include/c++/14.2.0/x86_64-w64-mingw32/bits/stdc++.h.gch
+```
+
 ## 还可以做到更多
 VS Code可以被用来做更多的事情，你不仅可以用VS Code的Remote-SSH插件进入Linux的世界来编写C/C++、Rust等语言的大型项目，还可以用它来编写Markdown、LaTeX文档，甚至可以用它来玩远古时代的游戏！而这一切都仅仅只需要你学会合理地**STFW**[^2]与**RTFM**[^3]，如果遇到了靠STFW与RTFM难以解决的问题，你也可以向他人请教，但在这之前请先学会[提问的智慧](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md)与[别像弱智一样提问](https://github.com/tangx/Stop-Ask-Questions-The-Stupid-Ways/blob/master/README.md)。
 
