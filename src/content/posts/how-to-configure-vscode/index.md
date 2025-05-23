@@ -78,20 +78,20 @@ gcc -v
         {
             "type": "cppbuild",
             "label": "g++ build and debug", // 编译C++的task，供launch.json使用
-            "command": "C:/mingw64/bin/x86_64-w64-mingw32-g++", // 这里写存放mingw的路径
+            "command": "g++", // 使用的编译器
             "args": [ // 下面是编译参数
                 "-fdiagnostics-color=always", // 强制编译器在输出错误和警告信息时使用颜色，便于阅读
                 "-g", // 生成调试信息
                 "-Wall", // 启用所有警告
                 "-std=c++23", // 使用C++23作为语言标准
-                "-D__LOCAL__", // （可选）定义宏__LOCAL__
+                "-DLOCAL", // （可选）定义宏LOCAL
                 "-O2", //（可选）开启O2优化
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "C:/mingw64/bin" // 这里写存放mingw的路径
+                "cwd": ""
             },
             "problemMatcher": [
                 "$gcc"
@@ -111,21 +111,21 @@ gcc -v
         {
             "type": "cppbuild",
             "label": "gcc build and debug", // 编译C的task，供launch.json使用
-            "command": "C:/mingw64/bin/x86_64-w64-mingw32-gcc", // 这里写存放mingw的路径
+            "command": "gcc", // 使用的编译器
             "args": [
                 "-fdiagnostics-color=always", // 强制编译器在输出错误和警告信息时使用颜色，便于阅读
                 "-g", // 生成调试信息
                 "-Wall", // 启用所有警告
                 "-std=c17", // 使用C17作为标准进行编译
-                "-D__LOCAL__", // （可选）定义宏__LOCAL__
+                "-DLOCAL", // （可选）定义宏__LOCAL__
                 "-lm", // 链接到数学库
                 "-O2", //（可选）开启O2优化
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "C:/mingw64/bin" // 这里写存放mingw的路径
+                "cwd": ""
             },
             "problemMatcher": [
                 "$gcc"
@@ -150,14 +150,13 @@ gcc -v
             "name": "g++", // 你可以自定义这个名字
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [], // 要传递给程序的命令行参数，此处为空
             "stopAtEntry": false, // 设置为true会在程序入口处停止
             "cwd": "${fileDirname}",
             "environment": [], // 可以在这里定义环境变量，此处为空
             "externalConsole": false, // 设置为true会使用外部终端来运行程序，而不是VSCode内部终端
             "MIMode": "gdb",
-            "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe", // 这里写存放mingw的路径
             "setupCommands": [
                 {
                     "description": "为 gdb 启用整齐打印",
@@ -181,14 +180,13 @@ gcc -v
             "name": "gcc",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe",
             "setupCommands": [
                 {
                     "description": "为 gdb 启用整齐打印",
@@ -485,7 +483,6 @@ TabWidth: 4
 
 # 使用tab字符: Never, ForIndentation, ForContinuationAndIndentation, Always
 UseTab: Never
-
 ```
 
 有时clangd的检查过于严格，会在我们认为不需要进行修改的地方标黄色波浪线（Warning），虽然我们应当小心谨慎地编写规范的代码，但有时确实无法完全按照标准去写~~懒得改~~，此时我们可以对clangd的配置文件进行修改以去掉刺眼的波浪线。按F1呼出VS Code的命令窗口，输入“clangd”，选择“Open user configuration file”打开config.yaml配置文件加入配置信息（或者在代码文件夹根目录下新建一个.clangd文件），我们给出一个例子以供参考：
@@ -495,7 +492,7 @@ CompileFlags: # 编译标志
 	"-std=c++23", # C++标准
     "-Wall", # 启用所有警告
     "-Wno-unused-but-set-variable", # 禁用警告存在未使用的变量
-    "-D__LOCAL__", # 定义宏__LOCAL__
+    "-DLOCAL", # 定义宏LOCAL
   ]
   Remove: [
     "-Werror", # 移除将所有警告作为错误的选项
